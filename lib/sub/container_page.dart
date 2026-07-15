@@ -178,23 +178,26 @@ class _ContainerPageState extends State<ContainerPage> {
                 ),
               ),
             ),
+            Divider(),
 
             // padding과 container 위젯의 비교
+            // padding위젯은 내부자식들 입장에서는 margin과 같은 입장
             Container(
               padding: EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(32),
                     decoration: BoxDecoration(color: Colors.amber),
                     child: Text("Container 위젯"),
                   ),
-                  Container(
-                    decoration: BoxDecoration(color: Colors.blueAccent),
-                    child: Padding(
-                      padding: EdgeInsetsGeometry.all(8),
-                      child: Text("Padding 위젯"),
+                  Padding(
+                    padding: EdgeInsetsGeometry.all(32),
+                    child: Container(
+                      color: Colors.lightBlue,
+                      alignment: Alignment.center,
+                      child: Text("Padding 위젯")
                     ),
                   ),
                 ],
@@ -202,7 +205,22 @@ class _ContainerPageState extends State<ContainerPage> {
             ),
             Divider(),
 
-            //
+            // 5. Align과 container의 alignment 속성
+            Container(
+              padding: EdgeInsets.all(16),
+              width: 200,
+              height: 200,
+              alignment: Alignment.bottomRight,
+              color: Colors.grey[300],
+              child: Container(
+                width: 50,
+                height: 50,
+                color: Colors.black,
+              ),
+            ),
+            Divider(),
+
+
           ],
         ),
       ),

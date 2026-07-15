@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:my_edu_app/sub/button_page.dart';
 import 'package:my_edu_app/sub/container_page.dart';
 import 'package:my_edu_app/sub/flex_page.dart';
+import 'package:my_edu_app/sub/row_column_page.dart';
+import 'package:my_edu_app/sub/stack_position_page.dart';
 import 'package:my_edu_app/sub/text_field_page.dart';
+import 'package:my_edu_app/sub/wrap_page.dart';
 
 void main() {
   // usePathUrlStrategy();
@@ -25,6 +28,9 @@ class MyApp extends StatelessWidget {
         '/button_page': (context) => ButtonPage(),
         '/text_field_page': (context) => TextFieldPage(),
         '/container_page': (context) => ContainerPage(),
+        '/row_column_page': (context) => RowColumnPage(),
+        '/stack_position_page': (context) => StackPositionPage(),
+        '/wrap_page': (context) => WrapPage(),
       },
       onGenerateRoute: (settings) {
         switch (settings.name) {
@@ -61,7 +67,6 @@ class _HomePageState extends State<HomePage> {
             /// 초기에는 버튼의 child에 Container > Text로 구성함
             /// <- 이렇게 구성하면 버튼은 내부의 child의 최대 너비만큼 제공함, 그리고 Container는 자신이 가지느 최대만큼의 너비를 가지려고 함
 
-
             /// 첫번째 페이지
             PageButton(buttonText: 'flex 연습 페이지', url: '/flex_page'),
 
@@ -73,6 +78,15 @@ class _HomePageState extends State<HomePage> {
 
             /// 네번째 페이지
             PageButton(buttonText: '컨테이너 연습 페이지', url: '/container_page'),
+
+            // 다섯번째 페이지
+            PageButton(buttonText: '로우/컬럼 연습 페이지', url: '/row_column_page'),
+
+            // 여섯번째 페이지
+            PageButton(buttonText: '스택 위치 연습 페이지', url: '/stack_position_page'),
+            
+            // 일곱번째 페이지
+            PageButton(buttonText: 'WRAP 연습 페이지', url: '/wrap_page'),
           ],
         ),
       ),
