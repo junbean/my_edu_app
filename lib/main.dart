@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_edu_app/sub/button_page.dart';
 import 'package:my_edu_app/sub/container_page.dart';
 import 'package:my_edu_app/sub/flex_page.dart';
+import 'package:my_edu_app/sub/list_grid_view_page.dart';
+import 'package:my_edu_app/sub/pagination_page.dart';
+import 'package:my_edu_app/sub/refresh_indicator_page.dart';
 import 'package:my_edu_app/sub/row_column_page.dart';
 import 'package:my_edu_app/sub/stack_position_page.dart';
 import 'package:my_edu_app/sub/text_field_page.dart';
@@ -31,6 +34,9 @@ class MyApp extends StatelessWidget {
         '/row_column_page': (context) => RowColumnPage(),
         '/stack_position_page': (context) => StackPositionPage(),
         '/wrap_page': (context) => WrapPage(),
+        '/list_grid_view_page': (context) => ListGridViewPage(),
+        '/pagination_page': (context) => PaginationPage(),
+        '/refresh_indicator_page': (context) => RefreshIndicatorPage()
       },
       onGenerateRoute: (settings) {
         switch (settings.name) {
@@ -87,6 +93,15 @@ class _HomePageState extends State<HomePage> {
             
             // 일곱번째 페이지
             PageButton(buttonText: 'WRAP 연습 페이지', url: '/wrap_page'),
+            
+            // 8번째 페이지
+            PageButton(buttonText: '리스트/그리드뷰 연습 페이지', url: '/list_grid_view_page'),
+            
+            // 9번째 페이지
+            PageButton(buttonText: '페이지네이션 연습 페이지', url: '/pagination_page'),
+            
+            // 10번째 페이지
+            PageButton(buttonText: 'pull-refresh 연습 페이지', url: '/pagination_page'),
           ],
         ),
       ),
