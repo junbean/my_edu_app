@@ -331,6 +331,7 @@ class _RowColumnPageState extends State<RowColumnPage> {
                 // -근데 이 방법은 Column의 최상위 부모가 SingleChildScrollView이면 안됨 (스크롤이 중첩되므로)
                 // -해당 위젯은 내부 자식들이 스크롤될 수 있도록 세로 제약 조건을 무한대로 열어준다
                 // -Column 안에서 Expanded를 쓰면, "무한대의 공간 중 남은 공간을 다 차지해라"라는 명령이 된다
+                // -주의) 예를 들어 container(height:300) -> column -> listview 이렇게 구성하더라도 에러가 발생함(column안에서 쓸려면 listview를 expanded 또는 sizedbox, shrinkWrap을 true로 설정 필요)
             // 또는 SizedBox/Container로 높이를 지정해서 부모가 준 공간 안에서만 차지하도록 만들기
             // 또는 shrinkWrap: true를 지정해서 ListView가 자식들의 높이만큼만 차지하도록 만들기(단, 항목이 많으면 성능상 좋지 않음)
             Container(

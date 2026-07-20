@@ -1,11 +1,22 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:my_edu_app/sub/button_page.dart';
+import 'package:my_edu_app/sub/checkbox_page.dart';
 import 'package:my_edu_app/sub/container_page.dart';
 import 'package:my_edu_app/sub/flex_page.dart';
 import 'package:my_edu_app/sub/list_grid_view_page.dart';
 import 'package:my_edu_app/sub/pagination_page.dart';
 import 'package:my_edu_app/sub/refresh_indicator_page.dart';
 import 'package:my_edu_app/sub/row_column_page.dart';
+import 'package:my_edu_app/sub/single_child_scroll_view_page.dart';
+import 'package:my_edu_app/sub/single_child_scroll_view_page/floating_scroll_page.dart';
+import 'package:my_edu_app/sub/single_child_scroll_view_page/normal_scroll_view_page.dart';
+import 'package:my_edu_app/sub/single_child_scroll_view_page/over_flow_page.dart';
+import 'package:my_edu_app/sub/single_child_scroll_view_page/row_scroll_page.dart';
+import 'package:my_edu_app/sub/single_child_scroll_view_page/scroll_app_change_page.dart';
+import 'package:my_edu_app/sub/single_child_scroll_view_page/wide_data_table_page.dart';
+import 'package:my_edu_app/sub/single_child_scroll_view_page/work_order_detail_page.dart';
 import 'package:my_edu_app/sub/stack_position_page.dart';
 import 'package:my_edu_app/sub/text_field_page.dart';
 import 'package:my_edu_app/sub/wrap_page.dart';
@@ -23,6 +34,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      scrollBehavior: AppScrollBehavior(),
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       initialRoute: '/',
       routes: {
@@ -36,7 +49,20 @@ class MyApp extends StatelessWidget {
         '/wrap_page': (context) => WrapPage(),
         '/list_grid_view_page': (context) => ListGridViewPage(),
         '/pagination_page': (context) => PaginationPage(),
-        '/refresh_indicator_page': (context) => RefreshIndicatorPage()
+        '/refresh_indicator_page': (context) => RefreshIndicatorPage(),
+        '/single_child_scroll_view_page': (context) => SingleChildScrollViewPage(),
+        '/checkbox_page': (context) => CheckboxPage(),
+
+
+
+        // SingleChildScrollView 하위
+        '/single_child_scroll_view_page/0': (context) => OverFlowPage(),
+        '/single_child_scroll_view_page/1': (context) => NormalScrollViewPage(),
+        '/single_child_scroll_view_page/2': (context) => RowScrollPage(),
+        '/single_child_scroll_view_page/3': (context) => ScrollAppChangePage(),
+        '/single_child_scroll_view_page/4': (context) => FloatingScrollPage(),
+        '/single_child_scroll_view_page/5': (context) => WorkOrderDetailPage(),
+        '/single_child_scroll_view_page/6': (context) => WideDataTablePage(),
       },
       onGenerateRoute: (settings) {
         switch (settings.name) {
@@ -66,43 +92,69 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            /// 초기에는 버튼의 child에 Container > Text로 구성함
-            /// <- 이렇게 구성하면 버튼은 내부의 child의 최대 너비만큼 제공함, 그리고 Container는 자신이 가지느 최대만큼의 너비를 가지려고 함
+        alignment: .topCenter,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(height: 16,),
 
-            /// 첫번째 페이지
-            PageButton(buttonText: 'flex 연습 페이지', url: '/flex_page'),
+              /// 초기에는 버튼의 child에 Container > Text로 구성함
+              /// <- 이렇게 구성하면 버튼은 내부의 child의 최대 너비만큼 제공함, 그리고 Container는 자신이 가지느 최대만큼의 너비를 가지려고 함
+              /// 첫번째 페이지
+              PageButton(buttonText: 'flex 연습 페이지', url: '/flex_page'),
+              SizedBox(height: 16,),
+        
+              /// 두번째 페이지
+              PageButton(buttonText: '버튼 연습 페이지', url: '/button_page'),
+              SizedBox(height: 16,),
+        
+              /// 세번째 페이지
+              PageButton(buttonText: '텍스트 필드 연습 페이지', url: '/text_field_page'),
+              SizedBox(height: 16,),
+        
+              /// 네번째 페이지
+              PageButton(buttonText: '컨테이너 연습 페이지', url: '/container_page'),
+              SizedBox(height: 16,),
+        
+              // 다섯번째 페이지
+              PageButton(buttonText: '로우/컬럼 연습 페이지', url: '/row_column_page'),
+              SizedBox(height: 16,),
+        
+              // 여섯번째 페이지
+              PageButton(buttonText: '스택 위치 연습 페이지', url: '/stack_position_page'),
+              SizedBox(height: 16,),
+              
+              // 일곱번째 페이지
+              PageButton(buttonText: 'WRAP 연습 페이지', url: '/wrap_page'),
+              SizedBox(height: 16,),
+              
+              // 8번째 페이지
+              PageButton(buttonText: '리스트/그리드뷰 연습 페이지', url: '/list_grid_view_page'),
+              SizedBox(height: 16,),
+              
+              // 9번째 페이지
+              PageButton(buttonText: '페이지네이션 연습 페이지', url: '/pagination_page'),
+              SizedBox(height: 16,),
+              
+              // 10번째 페이지
+              PageButton(buttonText: 'pull-refresh 연습 페이지', url: '/refresh_indicator_page'),
+              SizedBox(height: 16,),
+              
+              // 11번째 페이지
+              PageButton(buttonText: 'SingleChildScrollView 연습 페이지', url: '/single_child_scroll_view_page'),
+              SizedBox(height: 16,),
+        
+              // 12번째 페이지
+              PageButton(buttonText: '체크박스 연습 페이지', url: '/checkbox_page'),
+              SizedBox(height: 16,),
 
-            /// 두번째 페이지
-            PageButton(buttonText: '버튼 연습 페이지', url: '/button_page'),
 
-            /// 세번째 페이지
-            PageButton(buttonText: '텍스트 필드 연습 페이지', url: '/text_field_page'),
 
-            /// 네번째 페이지
-            PageButton(buttonText: '컨테이너 연습 페이지', url: '/container_page'),
-
-            // 다섯번째 페이지
-            PageButton(buttonText: '로우/컬럼 연습 페이지', url: '/row_column_page'),
-
-            // 여섯번째 페이지
-            PageButton(buttonText: '스택 위치 연습 페이지', url: '/stack_position_page'),
-            
-            // 일곱번째 페이지
-            PageButton(buttonText: 'WRAP 연습 페이지', url: '/wrap_page'),
-            
-            // 8번째 페이지
-            PageButton(buttonText: '리스트/그리드뷰 연습 페이지', url: '/list_grid_view_page'),
-            
-            // 9번째 페이지
-            PageButton(buttonText: '페이지네이션 연습 페이지', url: '/pagination_page'),
-            
-            // 10번째 페이지
-            PageButton(buttonText: 'pull-refresh 연습 페이지', url: '/pagination_page'),
-          ],
+              
+              SizedBox(height: 16,),
+            ],
+          ),
         ),
       ),
     );
@@ -135,4 +187,15 @@ class _PageButtonState extends State<PageButton> {
       ),
     );
   }
+}
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  const AppScrollBehavior();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse, // ← 마우스 드래그 스크롤 허용!
+    PointerDeviceKind.stylus,
+  };
 }
