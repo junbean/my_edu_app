@@ -18,6 +18,7 @@ import 'package:my_edu_app/sub/single_child_scroll_view_page/scroll_app_change_p
 import 'package:my_edu_app/sub/single_child_scroll_view_page/wide_data_table_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page/work_order_detail_page.dart';
 import 'package:my_edu_app/sub/stack_position_page.dart';
+import 'package:my_edu_app/sub/switch_page.dart';
 import 'package:my_edu_app/sub/text_field_page.dart';
 import 'package:my_edu_app/sub/wrap_page.dart';
 
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/refresh_indicator_page': (context) => RefreshIndicatorPage(),
         '/single_child_scroll_view_page': (context) => SingleChildScrollViewPage(),
         '/checkbox_page': (context) => CheckboxPage(),
+        '/switch_page': (context) => SwitchPage(),
 
 
 
@@ -83,6 +85,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,36 +95,35 @@ class _HomePageState extends State<HomePage> {
         title: Text("플러터 학습 HOME"),
         centerTitle: true,
       ),
-      body: Container(
-        alignment: .topCenter,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.topCenter,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(height: 16,),
-
+                
               /// 초기에는 버튼의 child에 Container > Text로 구성함
               /// <- 이렇게 구성하면 버튼은 내부의 child의 최대 너비만큼 제공함, 그리고 Container는 자신이 가지느 최대만큼의 너비를 가지려고 함
               /// 첫번째 페이지
               PageButton(buttonText: 'flex 연습 페이지', url: '/flex_page'),
               SizedBox(height: 16,),
-        
+                
               /// 두번째 페이지
               PageButton(buttonText: '버튼 연습 페이지', url: '/button_page'),
               SizedBox(height: 16,),
-        
+                
               /// 세번째 페이지
               PageButton(buttonText: '텍스트 필드 연습 페이지', url: '/text_field_page'),
               SizedBox(height: 16,),
-        
+                
               /// 네번째 페이지
               PageButton(buttonText: '컨테이너 연습 페이지', url: '/container_page'),
               SizedBox(height: 16,),
-        
+                
               // 다섯번째 페이지
               PageButton(buttonText: '로우/컬럼 연습 페이지', url: '/row_column_page'),
               SizedBox(height: 16,),
-        
+                
               // 여섯번째 페이지
               PageButton(buttonText: '스택 위치 연습 페이지', url: '/stack_position_page'),
               SizedBox(height: 16,),
@@ -144,13 +147,15 @@ class _HomePageState extends State<HomePage> {
               // 11번째 페이지
               PageButton(buttonText: 'SingleChildScrollView 연습 페이지', url: '/single_child_scroll_view_page'),
               SizedBox(height: 16,),
-        
+                
               // 12번째 페이지
               PageButton(buttonText: '체크박스 연습 페이지', url: '/checkbox_page'),
               SizedBox(height: 16,),
-
-
-
+                
+              // 13번째 페이지
+              PageButton(buttonText: '스위치 연습 페이지', url: '/switch_page'),
+              SizedBox(height: 16,),
+                
               
               SizedBox(height: 16,),
             ],
