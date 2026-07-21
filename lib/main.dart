@@ -7,6 +7,7 @@ import 'package:my_edu_app/sub/container_page.dart';
 import 'package:my_edu_app/sub/flex_page.dart';
 import 'package:my_edu_app/sub/list_grid_view_page.dart';
 import 'package:my_edu_app/sub/pagination_page.dart';
+import 'package:my_edu_app/sub/radio_page.dart';
 import 'package:my_edu_app/sub/refresh_indicator_page.dart';
 import 'package:my_edu_app/sub/row_column_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         '/single_child_scroll_view_page': (context) => SingleChildScrollViewPage(),
         '/checkbox_page': (context) => CheckboxPage(),
         '/switch_page': (context) => SwitchPage(),
+        '/radio_page': (context) => RadioPage(),
 
 
 
@@ -156,6 +158,9 @@ class _HomePageState extends State<HomePage> {
               PageButton(buttonText: '스위치 연습 페이지', url: '/switch_page'),
               SizedBox(height: 16,),
                 
+              // 13번째 페이지
+              PageButton(buttonText: '라디오 연습 페이지', url: '/radio_page'),
+              SizedBox(height: 16,),
               
               SizedBox(height: 16,),
             ],
