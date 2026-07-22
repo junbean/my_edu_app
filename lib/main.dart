@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_edu_app/sub/button_page.dart';
 import 'package:my_edu_app/sub/checkbox_page.dart';
 import 'package:my_edu_app/sub/container_page.dart';
+import 'package:my_edu_app/sub/drop_down_page.dart';
 import 'package:my_edu_app/sub/flex_page.dart';
 import 'package:my_edu_app/sub/list_grid_view_page.dart';
 import 'package:my_edu_app/sub/pagination_page.dart';
@@ -18,6 +19,7 @@ import 'package:my_edu_app/sub/single_child_scroll_view_page/row_scroll_page.dar
 import 'package:my_edu_app/sub/single_child_scroll_view_page/scroll_app_change_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page/wide_data_table_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page/work_order_detail_page.dart';
+import 'package:my_edu_app/sub/slider_page.dart';
 import 'package:my_edu_app/sub/stack_position_page.dart';
 import 'package:my_edu_app/sub/switch_page.dart';
 import 'package:my_edu_app/sub/text_field_page.dart';
@@ -56,6 +58,8 @@ class MyApp extends StatelessWidget {
         '/checkbox_page': (context) => CheckboxPage(),
         '/switch_page': (context) => SwitchPage(),
         '/radio_page': (context) => RadioPage(),
+        '/slider_page': (context) => SliderPage(),
+        '/drop_donw_page': (context) => DropDownPage(),
 
 
 
@@ -161,7 +165,16 @@ class _HomePageState extends State<HomePage> {
               // 13번째 페이지
               PageButton(buttonText: '라디오 연습 페이지', url: '/radio_page'),
               SizedBox(height: 16,),
+
+              // 14번째 페이지 - Slider/RangeSlider
+              PageButton(buttonText: '슬라이더 연습 페이지', url: '/slider_page'),
+              SizedBox(height: 16,),
               
+              // 15번째 페이지 - dropdownMenu 추가 필요
+              PageButton(buttonText: '드롭다운 연습 페이지', url: '/drop_donw_page'),
+              SizedBox(height: 16,),
+
+
               SizedBox(height: 16,),
             ],
           ),
@@ -172,10 +185,10 @@ class _HomePageState extends State<HomePage> {
 }
 
 class PageButton extends StatefulWidget {
-  final String? buttonText;
-  final String? url;
+  final String buttonText;
+  final String url;
 
-  const PageButton({super.key, this.buttonText, this.url});
+  const PageButton({super.key, required this.buttonText, required this.url});
 
   @override
   State<PageButton> createState() => _PageButtonState();
@@ -185,7 +198,7 @@ class _PageButtonState extends State<PageButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => Navigator.pushNamed(context, widget.url!),
+      onPressed: () => Navigator.pushNamed(context, widget.url),
       style: TextButton.styleFrom(
         shape: const ContinuousRectangleBorder(),
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),

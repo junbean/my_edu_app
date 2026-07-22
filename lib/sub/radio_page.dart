@@ -363,9 +363,14 @@ class _RadioPageState extends State<RadioPage> {
               Divider(),
 
 
+              /// selected: 현재 이 타일 전체가 선택(Highlight)되어 있는지를 나타내는 bool 타입 설정값(기본값 false)
+              ///   -true로 지정하면 라디오 버튼, 제목(title), 부제목(subtitle), 아이콘(secondary)의 색상이 Primary Color로 전환됨
+              ///   -만약 activeColor속성이 채워졌을 경우 -> selected된 아이템의 색상은 primary가 아닌 activeColor색상을 우선적으로 받음
+              ///   -fillColor는 라디오 버튼 색상 전용이라서 selected된 제목,부제,아이콘 등에 영향을 주지 않음
+              /// 
               Container(
                 padding: EdgeInsets.all(16),
-                child: RadioGroup<Num>(
+                child: RadioGroup<Num?>(
                   groupValue: _selectedNum,
                   onChanged: (Num? value) {
                     setState(() {
@@ -374,29 +379,32 @@ class _RadioPageState extends State<RadioPage> {
                   }, 
                   child: Column(
                     children: [
-                      RadioListTile(
+                      RadioListTile<Num?>(
                         title: Text('하나'),
                         subtitle: Text('one'),
                         secondary: Icon(Icons.one_k_rounded),
                         value: Num.one,
+                        toggleable: true,
                         activeColor: Colors.indigo,
                         selected: _selectedNum == Num.one,
                         controlAffinity: ListTileControlAffinity.leading,
                       ),
-                      RadioListTile(
+                      RadioListTile<Num?>(
                         title: Text('둘'),
                         subtitle: Text('two'),
                         secondary: Icon(Icons.two_k_rounded),
                         value: Num.two,
+                        toggleable: true,
                         activeColor: Colors.indigo,
                         selected: _selectedNum == Num.two,
                         controlAffinity: ListTileControlAffinity.leading,
                       ),
-                      RadioListTile(
+                      RadioListTile<Num?>(
                         title: Text('셋'),
                         subtitle: Text('three'),
                         secondary: Icon(Icons.three_k_rounded),
                         value: Num.three,
+                        toggleable: true,
                         activeColor: Colors.indigo,
                         selected: _selectedNum == Num.three,
                         controlAffinity: ListTileControlAffinity.leading,
