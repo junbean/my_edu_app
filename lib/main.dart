@@ -205,7 +205,7 @@ class _PageButtonState extends State<PageButton> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       child: Text(
-        widget.buttonText ?? '',
+        widget.buttonText,
         style: const TextStyle(fontSize: 18, color: Colors.white),
       ),
     );
