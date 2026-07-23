@@ -322,18 +322,18 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
             ),
             datePickerTheme: DatePickerThemeData(
               shape: ContinuousRectangleBorder(),        // 다이얼로그 창 자체의 모서리를 직각으로 설정
-              dayBackgroundColor: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.selected)) {
-                  return Colors.deepPurple; // 선택된 날짜 배경색
-                }
-                return null;
-              }),
-              dayForegroundColor: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.selected)) {
-                  return Colors.white; // 선택된 날짜 글자색
-                }
-                return null;
-              }),
+              // dayBackgroundColor: WidgetStateProperty.resolveWith((states) {
+              //   if (states.contains(WidgetState.selected)) {
+              //     return Colors.deepPurple; // 선택된 날짜 배경색
+              //   }
+              //   return null;
+              // }),
+              // dayForegroundColor: WidgetStateProperty.resolveWith((states) {
+              //   if (states.contains(WidgetState.selected)) {
+              //     return Colors.white; // 선택된 날짜 글자색
+              //   }
+              //   return null;
+              // }),
             )
           ),
           child: child!, // 실제 DatePicker 다이얼로그
@@ -349,7 +349,15 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
   }
 
   
-  
+  /// showDateRangePicker 사용하기
+  Future<void> _openRangeDate() async {
+    final DateTimeRange? pickedDate = await showDateRangePicker(
+      context: context, 
+      firstDate: DateTime(2025,1,1), 
+      lastDate: DateTime(2027,1,1)
+    );
+
+  }
 
   @override
   void initState() {
@@ -587,7 +595,22 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
                   onPressed: _openStyleDate, 
                   child: Text('테마 달력 열기')
                 ),
+              ),
+              Divider(),
+
+
+
+              /// 날짜 범위 지정하기 - showDateRangePicker
+              Container(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    TextButton(onPressed: onPressed, child: child),
+                    Text('')
+                  ],
+                ),
               )
+
             ],
 
 
