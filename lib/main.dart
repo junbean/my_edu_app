@@ -47,7 +47,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      theme: ThemeData(
+        fontFamily: 'NotoSansKR',
+        colorScheme: .fromSeed(seedColor: Colors.deepPurple)
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
