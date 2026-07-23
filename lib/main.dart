@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 import 'package:my_edu_app/sub/button_page.dart';
 import 'package:my_edu_app/sub/checkbox_page.dart';
 import 'package:my_edu_app/sub/container_page.dart';
@@ -11,6 +13,7 @@ import 'package:my_edu_app/sub/pagination_page.dart';
 import 'package:my_edu_app/sub/radio_page.dart';
 import 'package:my_edu_app/sub/refresh_indicator_page.dart';
 import 'package:my_edu_app/sub/row_column_page.dart';
+import 'package:my_edu_app/sub/show_date_picker_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page/floating_scroll_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page/normal_scroll_view_page.dart';
@@ -25,8 +28,12 @@ import 'package:my_edu_app/sub/switch_page.dart';
 import 'package:my_edu_app/sub/text_field_page.dart';
 import 'package:my_edu_app/sub/wrap_page.dart';
 
-void main() {
+void main() async {
   // usePathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDateFormatting('ko_KR', null);    // 로케일 한글 표시하기 위함(DateFormatter에서 한글 요일 표시에 사용)
+
   runApp(const MyApp());
 }
 
@@ -60,6 +67,7 @@ class MyApp extends StatelessWidget {
         '/radio_page': (context) => RadioPage(),
         '/slider_page': (context) => SliderPage(),
         '/drop_donw_page': (context) => DropDownPage(),
+        '/show_date_picker_page': (context) => ShowDatePickerPage(),
 
 
 
@@ -174,6 +182,8 @@ class _HomePageState extends State<HomePage> {
               PageButton(buttonText: '드롭다운 연습 페이지', url: '/drop_donw_page'),
               SizedBox(height: 16,),
 
+              PageButton(buttonText: '날짜 선택 연습 페이지', url: '/show_date_picker_page'),
+              SizedBox(height: 16,),
 
               SizedBox(height: 16,),
             ],
