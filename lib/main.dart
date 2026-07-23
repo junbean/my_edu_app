@@ -32,7 +32,10 @@ void main() async {
   // usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
 
-  await initializeDateFormatting('ko_KR', null);    // 로케일 한글 표시하기 위함(DateFormatter에서 한글 요일 표시에 사용)
+  await initializeDateFormatting(
+    'ko_KR',
+    null,
+  ); // 로케일 한글 표시하기 위함(DateFormatter에서 한글 요일 표시에 사용)
 
   runApp(const MyApp());
 }
@@ -49,7 +52,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'NotoSansKR',
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple)
+        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       initialRoute: '/',
       routes: {
@@ -64,15 +67,14 @@ class MyApp extends StatelessWidget {
         '/list_grid_view_page': (context) => ListGridViewPage(),
         '/pagination_page': (context) => PaginationPage(),
         '/refresh_indicator_page': (context) => RefreshIndicatorPage(),
-        '/single_child_scroll_view_page': (context) => SingleChildScrollViewPage(),
+        '/single_child_scroll_view_page': (context) =>
+            SingleChildScrollViewPage(),
         '/checkbox_page': (context) => CheckboxPage(),
         '/switch_page': (context) => SwitchPage(),
         '/radio_page': (context) => RadioPage(),
         '/slider_page': (context) => SliderPage(),
         '/drop_donw_page': (context) => DropDownPage(),
         '/show_date_picker_page': (context) => ShowDatePickerPage(),
-
-
 
         // SingleChildScrollView 하위
         '/single_child_scroll_view_page/0': (context) => OverFlowPage(),
@@ -102,8 +104,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,78 +117,93 @@ class _HomePageState extends State<HomePage> {
           alignment: Alignment.topCenter,
           child: Column(
             children: [
-              SizedBox(height: 16,),
-                
+              SizedBox(height: 16),
+
               /// 초기에는 버튼의 child에 Container > Text로 구성함
               /// <- 이렇게 구성하면 버튼은 내부의 child의 최대 너비만큼 제공함, 그리고 Container는 자신이 가지느 최대만큼의 너비를 가지려고 함
               /// 첫번째 페이지
               PageButton(buttonText: 'flex 연습 페이지', url: '/flex_page'),
-              SizedBox(height: 16,),
-                
+              SizedBox(height: 16),
+
               /// 두번째 페이지
               PageButton(buttonText: '버튼 연습 페이지', url: '/button_page'),
-              SizedBox(height: 16,),
-                
+              SizedBox(height: 16),
+
               /// 세번째 페이지
               PageButton(buttonText: '텍스트 필드 연습 페이지', url: '/text_field_page'),
-              SizedBox(height: 16,),
-                
+              SizedBox(height: 16),
+
               /// 네번째 페이지
               PageButton(buttonText: '컨테이너 연습 페이지', url: '/container_page'),
-              SizedBox(height: 16,),
-                
+              SizedBox(height: 16),
+
               // 다섯번째 페이지
               PageButton(buttonText: '로우/컬럼 연습 페이지', url: '/row_column_page'),
-              SizedBox(height: 16,),
-                
+              SizedBox(height: 16),
+
               // 여섯번째 페이지
-              PageButton(buttonText: '스택 위치 연습 페이지', url: '/stack_position_page'),
-              SizedBox(height: 16,),
-              
+              PageButton(
+                buttonText: '스택 위치 연습 페이지',
+                url: '/stack_position_page',
+              ),
+              SizedBox(height: 16),
+
               // 일곱번째 페이지
               PageButton(buttonText: 'WRAP 연습 페이지', url: '/wrap_page'),
-              SizedBox(height: 16,),
-              
+              SizedBox(height: 16),
+
               // 8번째 페이지
-              PageButton(buttonText: '리스트/그리드뷰 연습 페이지', url: '/list_grid_view_page'),
-              SizedBox(height: 16,),
-              
+              PageButton(
+                buttonText: '리스트/그리드뷰 연습 페이지',
+                url: '/list_grid_view_page',
+              ),
+              SizedBox(height: 16),
+
               // 9번째 페이지
               PageButton(buttonText: '페이지네이션 연습 페이지', url: '/pagination_page'),
-              SizedBox(height: 16,),
-              
+              SizedBox(height: 16),
+
               // 10번째 페이지
-              PageButton(buttonText: 'pull-refresh 연습 페이지', url: '/refresh_indicator_page'),
-              SizedBox(height: 16,),
-              
+              PageButton(
+                buttonText: 'pull-refresh 연습 페이지',
+                url: '/refresh_indicator_page',
+              ),
+              SizedBox(height: 16),
+
               // 11번째 페이지
-              PageButton(buttonText: 'SingleChildScrollView 연습 페이지', url: '/single_child_scroll_view_page'),
-              SizedBox(height: 16,),
-                
+              PageButton(
+                buttonText: 'SingleChildScrollView 연습 페이지',
+                url: '/single_child_scroll_view_page',
+              ),
+              SizedBox(height: 16),
+
               // 12번째 페이지
               PageButton(buttonText: '체크박스 연습 페이지', url: '/checkbox_page'),
-              SizedBox(height: 16,),
-                
+              SizedBox(height: 16),
+
               // 13번째 페이지
               PageButton(buttonText: '스위치 연습 페이지', url: '/switch_page'),
-              SizedBox(height: 16,),
-                
+              SizedBox(height: 16),
+
               // 13번째 페이지
               PageButton(buttonText: '라디오 연습 페이지', url: '/radio_page'),
-              SizedBox(height: 16,),
+              SizedBox(height: 16),
 
               // 14번째 페이지 - Slider/RangeSlider
               PageButton(buttonText: '슬라이더 연습 페이지', url: '/slider_page'),
-              SizedBox(height: 16,),
-              
+              SizedBox(height: 16),
+
               // 15번째 페이지 - dropdownMenu 추가 필요
               PageButton(buttonText: '드롭다운 연습 페이지', url: '/drop_donw_page'),
-              SizedBox(height: 16,),
+              SizedBox(height: 16),
 
-              PageButton(buttonText: '날짜 선택 연습 페이지', url: '/show_date_picker_page'),
-              SizedBox(height: 16,),
+              PageButton(
+                buttonText: '날짜 선택 연습 페이지',
+                url: '/show_date_picker_page',
+              ),
+              SizedBox(height: 16),
 
-              SizedBox(height: 16,),
+              SizedBox(height: 16),
             ],
           ),
         ),

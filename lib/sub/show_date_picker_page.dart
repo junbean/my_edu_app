@@ -10,8 +10,7 @@ class ShowDatePickerPage extends StatefulWidget {
 }
 
 class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
-  DateTime? _selectedDate;  // 선택할 날짜를 저장할 변수
-
+  DateTime? _selectedDate; // 선택할 날짜를 저장할 변수
 
   /// showDatePicker의 매개변수 정리
   ///   -context(필수): 다이얼로그를 띄울 위치의 빌드 컨텍스트, 테마 및 화면 트리를 참조
@@ -43,7 +42,7 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
   ///       -false를 반환하면 해당 날짜는 선택할 수 없게 됨
   ///       -달력이 그려질 때 표출되는 모든 날짜(day)에 대해 이 함수가 실행, 반환되는 bool 값(true 또는 false)에 따라 활성/비활성이 나뉜다
   ///       -비활성화된 날짜에는 이벤트가 발생하지 않는다
-  ///       -예시      
+  ///       -예시
   ///         selectableDayPredicate: (DateTime date) {
   //            토요일(6), 일요일(7)은 선택 불가 처리
   ///           return date.weekday != DateTime.saturday && date.weekday != DateTime.sunday;
@@ -102,8 +101,8 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
   ///       -routeSettings: const RouteSettings(name: '/date_picker_dialog'),
   ///   -anchorPoint: 멀티 디스플레이 환경이나 특수한 레이아웃 배치 시 다이얼로그가 위치할 기준 좌표점(Offset)을 지정
   ///       -anchorPoint: const Offset(100, 200),
-  ///   -barrierDismissible: 다이얼로그 바깥 영역을 클릭했을 때 다이얼로그를 닫을지 여부를 결정 
-  ///       -기본값은 true 
+  ///   -barrierDismissible: 다이얼로그 바깥 영역을 클릭했을 때 다이얼로그를 닫을지 여부를 결정
+  ///       -기본값은 true
   ///       -false로 설정하면 확인/취소 버튼으로만 다이얼로그를 닫을 수 있다
   ///   -barrierColor: 다이얼로그 배경에 깔리는 어두운 딤(Dim) 색상을 지정
   ///       -barrierColor: Colors.black.withAlpha(180), // 배경 어둡게 처리
@@ -114,15 +113,14 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
   ///       onDatePickerModeChange: (DatePickerEntryMode mode) {
   ///         print('현재 모드 변경됨: $mode');
   ///       },
-  /// 
-  /// 
+  ///
+  ///
 
-  
   Future<void> _openDatePicker() async {
     final DateTime? pickedDate = await showDatePicker(
-      context: context, 
+      context: context,
       initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2000), 
+      firstDate: DateTime(2000),
       lastDate: DateTime(2030), // 이러면 2029.12 까지만 나오게 됨
       // switchToCalendarEntryModeIcon: Icon(Icons.abc),             // 텍스트입력뷰에서 달력뷰로 전환되는 아이콘
       // switchToInputEntryModeIcon: Icon(Icons.access_alarm_sharp),  // 달력뷰에서 텍스트입력뷰으로 전환되는 아이콘
@@ -132,39 +130,38 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
       barrierLabel: '날짜 선택 창 닫기',
     );
 
-    if(pickedDate != null) {
+    if (pickedDate != null) {
       setState(() {
         _selectedDate = pickedDate;
       });
     }
   }
-  
-
 
   /// DateFormat 패키지를 사용해서 텍스트필드에 넣기 - intl패키지
-  DateTime? _selectedTextDate;   
+  DateTime? _selectedTextDate;
   late TextEditingController _textController;
 
   Future<void> _openDateText() async {
     String dateText = '';
     final DateTime? pickedDate = await showDatePicker(
-      context: context, 
-      firstDate: DateTime(2026,1,1), 
-      lastDate: DateTime(2027,1,1),
+      context: context,
+      firstDate: DateTime(2026, 1, 1),
+      lastDate: DateTime(2027, 1, 1),
       initialDate: _selectedTextDate ?? DateTime.now(),
     );
 
-    if(pickedDate != null) {
+    if (pickedDate != null) {
       _selectedTextDate = pickedDate;
       // 기본 문자열을 사용할 때
       // dateText = '${_selectedTextDate!.year}년 ${_selectedTextDate!.month}월 ${_selectedTextDate!.day}일';
       // _textController.text = dateText;
-      final String formattedDate = DateFormat('yyyy년 MM월 dd일').format(pickedDate);
+      final String formattedDate = DateFormat(
+        'yyyy년 MM월 dd일',
+      ).format(pickedDate);
       _textController.text = formattedDate;
     }
   }
 
-  
   /// 날짜필드 두개를 받기
   /// 시작일, 종료일을 통해서 종료일이 시작일보다 먼저라면 에러텍스트를 표시
   DateTime? _selectedStart;
@@ -181,17 +178,17 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
     }
     return _isDateRangeValid ? '확인되었습니다' : '종료일자를 다시 확인하십시오';
   }
-  
+
   Future<void> _openDateStart() async {
     DateTime? pickedDate = await showDatePicker(
-      context: context, 
+      context: context,
       helpText: '시작일',
       initialDate: _selectedStart ?? DateTime.now(),
-      firstDate: DateTime(2024, 1, 1), 
+      firstDate: DateTime(2024, 1, 1),
       lastDate: DateTime(2028, 1, 1),
     );
 
-    if(pickedDate != null) {
+    if (pickedDate != null) {
       setState(() {
         _selectedStart = pickedDate;
       });
@@ -200,17 +197,18 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
 
   Future<void> _openDateEnd() async {
     final DateTime minDate = _selectedStart ?? DateTime(2024, 1, 1);
-    final DateTime targetDate = _selectedEnd ?? minDate.add(const Duration(days: 1));
+    final DateTime targetDate =
+        _selectedEnd ?? minDate.add(const Duration(days: 1));
 
     DateTime? pickedDate = await showDatePicker(
-      context: context, 
+      context: context,
       helpText: '종료일',
       initialDate: targetDate.isBefore(minDate) ? minDate : targetDate,
       firstDate: minDate,
       lastDate: DateTime(2028, 1, 1),
     );
-    
-    if(pickedDate != null) {
+
+    if (pickedDate != null) {
       setState(() {
         _selectedEnd = pickedDate;
       });
@@ -224,20 +222,16 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
   //     _isDateEnable = false;
   //     return '시작일과 종료일을 선택하십시오';
   //   }
-    
+
   //   // 시작일이 종료일보다 뒤에 있다면
   //   if (_selectedStart!.isAfter(_selectedEnd!)) {
   //     _isDateEnable = false;
-  //     return '종료일자를 다시 확인하십시오'; 
+  //     return '종료일자를 다시 확인하십시오';
   //   } else {
   //     _isDateEnable = true;
-  //     return '확인되었습니다'; 
+  //     return '확인되었습니다';
   //   }
   // }
-
-
-
-
 
   /// 주말 선택 불가 캘린더 만들기
   DateTime? _selectedDateNotWeekend;
@@ -245,33 +239,33 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
   Future<void> _openDateNotWeekend() async {
     final pickedDate = await showDatePicker(
       context: context,
-      initialDate: _selectedDateNotWeekend ?? DateTime.now() ,
-      firstDate: DateTime(2026,1,1), 
-      lastDate: DateTime(2027,1,1),
+      initialDate: _selectedDateNotWeekend ?? DateTime.now(),
+      firstDate: DateTime(2026, 1, 1),
+      lastDate: DateTime(2027, 1, 1),
       selectableDayPredicate: (day) {
-        return day.weekday != DateTime.saturday && day.weekday != DateTime.sunday;
-      }
+        return day.weekday != DateTime.saturday &&
+            day.weekday != DateTime.sunday;
+      },
     );
 
-    if(pickedDate != null) {
+    if (pickedDate != null) {
       setState(() {
         _selectedDateNotWeekend = pickedDate;
       });
     }
   }
 
-
   /// 날짜 입력 형식 변경
   CalendarFormat _selectedFormat = CalendarFormat.calendar;
   DatePickerEntryMode get _selectedMode {
-    switch(_selectedFormat) {
-      case CalendarFormat.calendar: 
+    switch (_selectedFormat) {
+      case CalendarFormat.calendar:
         return DatePickerEntryMode.calendar;
-      case CalendarFormat.input: 
+      case CalendarFormat.input:
         return DatePickerEntryMode.input;
-      case CalendarFormat.calendarOnly: 
+      case CalendarFormat.calendarOnly:
         return DatePickerEntryMode.calendarOnly;
-      case CalendarFormat.inputOnly: 
+      case CalendarFormat.inputOnly:
         return DatePickerEntryMode.inputOnly;
     }
   }
@@ -282,46 +276,45 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
     final pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedValue ?? DateTime.now(),
-      firstDate: DateTime(2026,1,1), 
-      lastDate: DateTime(2027,1,1),
-      initialEntryMode: _selectedMode
+      firstDate: DateTime(2026, 1, 1),
+      lastDate: DateTime(2027, 1, 1),
+      initialEntryMode: _selectedMode,
     );
 
-    if(pickedDate != null) {
+    if (pickedDate != null) {
       setState(() {
         _selectedValue = pickedDate;
       });
     }
   }
 
-
   /// 색상이 변경된 달력 출력
   DateTime? _selectedStyleDate;
-  
+
   Future<void> _openStyleDate() async {
     final pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedStyleDate ?? DateTime.now(),
-      firstDate: DateTime(2026,1,1), 
-      lastDate: DateTime(2027,1,1),
-      barrierDismissible: false,   // 바깥 영역 눌러도 안 닫히도록 
+      firstDate: DateTime(2026, 1, 1),
+      lastDate: DateTime(2027, 1, 1),
+      barrierDismissible: false, // 바깥 영역 눌러도 안 닫히도록
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary: Colors.indigo,      // 헤더 배경, 선택된 날짜 배경색
-              onPrimary: Colors.white,     // 헤더/선택된 날짜의 텍스트색
-              onSurface: Colors.black87,   // 캘린더 본문 텍스트색
+              primary: Colors.indigo, // 헤더 배경, 선택된 날짜 배경색
+              onPrimary: Colors.white, // 헤더/선택된 날짜의 텍스트색
+              onSurface: Colors.black87, // 캘린더 본문 텍스트색
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.white, // 취소/확인 버튼 텍스트색
-                shape: ContinuousRectangleBorder()
+                shape: ContinuousRectangleBorder(),
               ),
             ),
             datePickerTheme: DatePickerThemeData(
-              shape: ContinuousRectangleBorder(),        // 다이얼로그 창 자체의 모서리를 직각으로 설정
+              shape: ContinuousRectangleBorder(), // 다이얼로그 창 자체의 모서리를 직각으로 설정
               // dayBackgroundColor: WidgetStateProperty.resolveWith((states) {
               //   if (states.contains(WidgetState.selected)) {
               //     return Colors.deepPurple; // 선택된 날짜 배경색
@@ -334,29 +327,66 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
               //   }
               //   return null;
               // }),
-            )
+            ),
           ),
           child: child!, // 실제 DatePicker 다이얼로그
         );
       },
     );
 
-    if(pickedDate != null) {
+    if (pickedDate != null) {
       setState(() {
         _selectedStyleDate = pickedDate;
       });
     }
   }
 
-  
   /// showDateRangePicker 사용하기
+  DateTimeRange? _selectedRange;
+
   Future<void> _openRangeDate() async {
     final DateTimeRange? pickedDate = await showDateRangePicker(
-      context: context, 
-      firstDate: DateTime(2025,1,1), 
-      lastDate: DateTime(2027,1,1)
+      context: context,
+      firstDate: DateTime(2025, 1, 1),
+      lastDate: DateTime(2027, 1, 1),
+      initialDateRange: DateTimeRange(
+        start: _selectedRange == null ? DateTime.now() : _selectedRange!.start,
+        end: _selectedRange == null
+            ? DateTime.now().add(const Duration(days: 3))
+            : _selectedRange!.end, // 기본 3박 4일 지정
+      ),
     );
 
+    if (pickedDate != null) {
+      setState(() {
+        _selectedRange = pickedDate;
+      });
+    }
+  }
+
+  /// showDateRangePicker의
+  Future<void> _openRangeDateForDialog() async {
+    final DateTimeRange? pickedDate = await showDialog<DateTimeRange>(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: SizedBox(
+            width: 400, // 원하는 너비 지정
+            height: 500, // 원하는 높이 지정
+            child: DateRangePickerDialog(
+              firstDate: DateTime(2025, 1, 1),
+              lastDate: DateTime(2027, 1, 1),
+              initialDateRange:
+                  _selectedRange ??
+                  DateTimeRange(
+                    start: DateTime.now(),
+                    end: DateTime.now().add(const Duration(days: 3)),
+                  ),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -394,27 +424,27 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
                   children: [
                     Text(
                       _selectedDate == null
-                      ? '날짜를 선택해주세요'
-                      : '선택한 날짜: ${_selectedDate!.year}-${_selectedDate!.month}-${_selectedDate!.day}',
+                          ? '날짜를 선택해주세요'
+                          : '선택한 날짜: ${_selectedDate!.year}-${_selectedDate!.month}-${_selectedDate!.day}',
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Colors.blue, 
-                        foregroundColor: Colors.white, 
-                        shape: ContinuousRectangleBorder()
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                        shape: ContinuousRectangleBorder(),
                       ),
                       onPressed: () {
                         _openDatePicker();
-                      }, 
-                      child: Text('날짜 선택하기')
-                    )
+                      },
+                      child: Text('날짜 선택하기'),
+                    ),
                   ],
                 ),
               ),
               Divider(),
 
               /// showDatePicker로 넣은 날짜를 textField에 표시하기
-              /// DateFormat를 사용하면 편하게 됨 
+              /// DateFormat를 사용하면 편하게 됨
               Container(
                 padding: EdgeInsets.all(16),
                 child: Column(
@@ -423,7 +453,7 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
-                        shape: ContinuousRectangleBorder()
+                        shape: ContinuousRectangleBorder(),
                       ),
                       onPressed: () => _openDateText(),
                       child: Text('날짜 선택하기 -> 텍스트 변환'),
@@ -434,11 +464,9 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
                         isDense: true,
                         enabled: false,
                         hintText: "날짜가 입력됨",
-                        border: OutlineInputBorder()
+                        border: OutlineInputBorder(),
                       ),
-
-                    )
-
+                    ),
                   ],
                 ),
               ),
@@ -455,10 +483,10 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
                     Text(
                       _validationMessage,
                       style: TextStyle(
-                        color: (_selectedStart == null || _selectedEnd == null) 
-                          ? Colors.grey 
-                          : (_isDateRangeValid ? Colors.blue : Colors.red)
-                      ), 
+                        color: (_selectedStart == null || _selectedEnd == null)
+                            ? Colors.grey
+                            : (_isDateRangeValid ? Colors.blue : Colors.red),
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: .spaceAround,
@@ -469,27 +497,39 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
                               style: TextButton.styleFrom(
                                 backgroundColor: Colors.indigo,
                                 foregroundColor: Colors.white,
-                                shape: ContinuousRectangleBorder()
+                                shape: ContinuousRectangleBorder(),
                               ),
                               onPressed: () => _openDateStart(),
-                              child: Text('시작일 지정하기')
+                              child: Text('시작일 지정하기'),
                             ),
-                            Text(_selectedStart != null ? DateFormat('yyyy년 MM월 dd일').format(_selectedStart!) : '시작일을 선택하십시오'),
+                            Text(
+                              _selectedStart != null
+                                  ? DateFormat(
+                                      'yyyy년 MM월 dd일',
+                                    ).format(_selectedStart!)
+                                  : '시작일을 선택하십시오',
+                            ),
                           ],
                         ),
-                        
+
                         Column(
                           children: [
                             TextButton(
                               style: TextButton.styleFrom(
                                 backgroundColor: Colors.indigo,
                                 foregroundColor: Colors.white,
-                                shape: ContinuousRectangleBorder()
+                                shape: ContinuousRectangleBorder(),
                               ),
                               onPressed: () => _openDateEnd(),
-                              child: Text('종료일 지정하기')
+                              child: Text('종료일 지정하기'),
                             ),
-                            Text(_selectedEnd != null ? DateFormat('yyyy년 MM월 dd일').format(_selectedEnd!) : '종료일을 선택하십시오'),
+                            Text(
+                              _selectedEnd != null
+                                  ? DateFormat(
+                                      'yyyy년 MM월 dd일',
+                                    ).format(_selectedEnd!)
+                                  : '종료일을 선택하십시오',
+                            ),
                           ],
                         ),
                       ],
@@ -508,14 +548,19 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.purple,
                         foregroundColor: Colors.white,
-                        shape: ContinuousRectangleBorder()
+                        shape: ContinuousRectangleBorder(),
                       ),
-                      onPressed: _openDateNotWeekend, 
-                      child: Text('날짜 선택(주말은 안됨)')
+                      onPressed: _openDateNotWeekend,
+                      child: Text('날짜 선택(주말은 안됨)'),
                     ),
-                    Text(_selectedDateNotWeekend == null 
-                        ? '날짜를 선택하세요' 
-                        : DateFormat('yyyy년 MM월 dd일 - EEEE', 'ko_KR').format(_selectedDateNotWeekend!))
+                    Text(
+                      _selectedDateNotWeekend == null
+                          ? '날짜를 선택하세요'
+                          : DateFormat(
+                              'yyyy년 MM월 dd일 - EEEE',
+                              'ko_KR',
+                            ).format(_selectedDateNotWeekend!),
+                    ),
                   ],
                 ),
               ),
@@ -530,90 +575,111 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
                       groupValue: _selectedFormat,
                       onChanged: (value) {
                         setState(() {
-                          if(value != null) {
+                          if (value != null) {
                             _selectedFormat = value;
                           }
                         });
-                      }, 
+                      },
                       child: Row(
                         mainAxisAlignment: .spaceEvenly,
                         children: [
                           Row(
-                            children: [                             
+                            children: [
                               Radio(value: CalendarFormat.calendar),
-                              Text(CalendarFormat.calendar.name)
+                              Text(CalendarFormat.calendar.name),
                             ],
                           ),
 
                           Row(
-                            children: [                             
+                            children: [
                               Radio(value: CalendarFormat.input),
-                              Text(CalendarFormat.input.name)
+                              Text(CalendarFormat.input.name),
                             ],
                           ),
-                          
+
                           Row(
-                            children: [                             
+                            children: [
                               Radio(value: CalendarFormat.calendarOnly),
-                              Text(CalendarFormat.calendarOnly.name)
+                              Text(CalendarFormat.calendarOnly.name),
                             ],
                           ),
-                          
+
                           Row(
-                            children: [                             
+                            children: [
                               Radio(value: CalendarFormat.inputOnly),
-                              Text(CalendarFormat.inputOnly.name)
+                              Text(CalendarFormat.inputOnly.name),
                             ],
-                          )
+                          ),
                         ],
-                      )
+                      ),
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.amber,
                         foregroundColor: Colors.white,
-                        shape: ContinuousRectangleBorder()
+                        shape: ContinuousRectangleBorder(),
                       ),
-                      onPressed: () => _openDate(), 
-                      child: Text('달력 출력')
-                    )
+                      onPressed: () => _openDate(),
+                      child: Text('달력 출력'),
+                    ),
                   ],
                 ),
               ),
               Divider(),
 
-
-              /// 달력 테마 변경 + 딤 
+              /// 달력 테마 변경 + 딤
               Container(
                 padding: EdgeInsets.all(16),
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.lightGreen,
                     foregroundColor: Colors.white,
-                    shape: ContinuousRectangleBorder()
+                    shape: ContinuousRectangleBorder(),
                   ),
-                  onPressed: _openStyleDate, 
-                  child: Text('테마 달력 열기')
+                  onPressed: _openStyleDate,
+                  child: Text('테마 달력 열기'),
                 ),
               ),
               Divider(),
-
-
 
               /// 날짜 범위 지정하기 - showDateRangePicker
               Container(
                 padding: EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    TextButton(onPressed: onPressed, child: child),
-                    Text('')
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.teal,
+                        foregroundColor: Colors.white,
+                        shape: ContinuousRectangleBorder(),
+                      ),
+                      onPressed: _openRangeDate,
+                      child: Text('날짜 범위 지정'),
+                    ),
+                    Text(
+                      _selectedRange == null
+                          ? '날짜 범위가 지정되지 않음'
+                          : '${DateFormat('yyyy년 MM월 dd일').format(_selectedRange!.start)} ~ ${DateFormat('yyyy년 MM월 dd일').format(_selectedRange!.end)}',
+                    ),
                   ],
                 ),
-              )
+              ),
+              Divider(),
 
+              /// DateRange의 스타일
+              Container(
+                padding: EdgeInsets.all(16),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.amber,
+                    foregroundColor: Colors.white,
+                    shape: ContinuousRectangleBorder(),
+                  ),
+                  onPressed: _openRangeDateForDialog,
+                  child: Text('스타일이 적용된 날짜 범위'),
+                ),
+              ),
             ],
-
-
           ),
         ),
       ),
@@ -621,9 +687,4 @@ class _ShowDatePickerPageState extends State<ShowDatePickerPage> {
   }
 }
 
-enum CalendarFormat {
-  calendar,
-  input,
-  calendarOnly,
-  inputOnly
-}
+enum CalendarFormat { calendar, input, calendarOnly, inputOnly }
