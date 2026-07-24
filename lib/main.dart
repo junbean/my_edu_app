@@ -14,6 +14,7 @@ import 'package:my_edu_app/sub/radio_page.dart';
 import 'package:my_edu_app/sub/refresh_indicator_page.dart';
 import 'package:my_edu_app/sub/row_column_page.dart';
 import 'package:my_edu_app/sub/show_date_picker_page.dart';
+import 'package:my_edu_app/sub/show_time_picker_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page/floating_scroll_page.dart';
 import 'package:my_edu_app/sub/single_child_scroll_view_page/normal_scroll_view_page.dart';
@@ -75,6 +76,8 @@ class MyApp extends StatelessWidget {
         '/slider_page': (context) => SliderPage(),
         '/drop_donw_page': (context) => DropDownPage(),
         '/show_date_picker_page': (context) => ShowDatePickerPage(),
+        '/show_time_picker_page': (context) => ShowTimePickerPage(),
+
 
         // SingleChildScrollView 하위
         '/single_child_scroll_view_page/0': (context) => OverFlowPage(),
@@ -197,9 +200,17 @@ class _HomePageState extends State<HomePage> {
               PageButton(buttonText: '드롭다운 연습 페이지', url: '/drop_donw_page'),
               SizedBox(height: 16),
 
+              // 16번째 페이지
               PageButton(
                 buttonText: '날짜 선택 연습 페이지',
                 url: '/show_date_picker_page',
+              ),
+              SizedBox(height: 16),
+
+              // 17번째 페이지 - 
+              PageButton(
+                buttonText: '시간 선택 연습 페이지',
+                url: '/show_time_picker_page',
               ),
               SizedBox(height: 16),
 
